@@ -1,0 +1,31 @@
+<h2>Liste des tâches</h2>
+
+<div *ngFor="let task of tasks" style="border:1px solid #ccc; padding:10px; margin-bottom:10px">
+
+  <h3>{{ task.title }}</h3>
+  <p>{{ task.description }}</p>
+  <p>Status : <b>{{ task.status }}</b></p>
+
+  <button
+    *ngIf="task.status === 'TODO'"
+    (click)="changeStatus(task, 'IN_PROGRESS')">
+    ▶ Démarrer
+  </button>
+
+  <button
+    *ngIf="task.status === 'IN_PROGRESS'"
+    (click)="changeStatus(task, 'DONE')">
+    ✔ Terminer
+  </button>
+
+  <button (click)="selectedTaskId = task.id">
+    Voir historique
+  </button>
+
+  <app-task-history
+    *ngIf="selectedTaskId === task.id"
+    [taskId]="task.id">
+  </app-task-history>
+
+
+</div>

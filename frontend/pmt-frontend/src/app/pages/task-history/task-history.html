@@ -1,0 +1,14 @@
+<h3>Historique de la tâche</h3>
+
+<div *ngIf="history.length === 0">
+  Aucun historique disponible
+</div>
+
+<ul *ngIf="history.length > 0">
+  <li *ngFor="let h of history">
+    <strong>{{ h.performedBy.username }}</strong>
+    a modifié <em>{{ h.fieldName }}</em><br>
+    <span>{{ h.oldValue }} → {{ h.newValue }}</span><br>
+    <small>{{ h.createdAt | date:'short' }}</small>
+  </li>
+</ul>
